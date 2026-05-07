@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.UserTransactionLogMapper">
+
+    <!-- 单条插入，用于 BATCH 模式 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user_transaction_log (
+            user_id, username, age, email, registration_date, last_login_time,
+            is_active, account_balance, total_points, phone, address, gender,
+            birthday, membership_level, referrer_id, status, remark,
+            update_time, create_time
+        ) VALUES (
+                     #{userId}, #{username}, #{age}, #{email}, #{registrationDate}, #{lastLoginTime},
+                     #{isActive}, #{accountBalance}, #{totalPoints}, #{phone}, #{address}, #{gender},
+                     #{birthday}, #{membershipLevel}, #{referrerId}, #{status}, #{remark},
+                     #{updateTime}, #{createTime}
+                 )
+    </insert>
+
+
+    <!--    条件查询-->
+    <select id="list" resultType="com.itheima.pojo.UserTransactionLog">
+        select *
+        from user_transaction_log
+        <where>
+            <if test="begin != null and end !=null">
+                and birthday between #{begin} and #{end}
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+
+
+
+    <!-- 可选：一次性插入多条，注意 SQL 长度限制，建议每批 500~1000 条 -->
+<!--    <insert id="batchInsert">-->
+<!--        INSERT INTO user_transaction_log (-->
+<!--        user_id, username, age, email, registration_date, last_login_time,-->
+<!--        is_active, account_balance, total_points, phone, address, gender,-->
+<!--        birthday, membership_level, referrer_id, status, remark,-->
+<!--        update_time, create_time-->
+<!--        ) VALUES-->
+<!--        <foreach collection="list" item="item" separator=",">-->
+<!--            (-->
+<!--            #{item.userId}, #{item.username}, #{item.age}, #{item.email}, #{item.registrationDate}, #{item.lastLoginTime},-->
+<!--            #{item.isActive}, #{item.accountBalance}, #{item.totalPoints}, #{item.phone}, #{item.address}, #{item.gender},-->
+<!--            #{item.birthday}, #{item.membershipLevel}, #{item.referrerId}, #{item.status}, #{item.remark},-->
+<!--            #{item.updateTime}, #{item.createTime}-->
+<!--            )-->
+<!--        </foreach>-->
+<!--    </insert>-->
+</mapper>

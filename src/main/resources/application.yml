@@ -1,0 +1,17 @@
+spring:
+  #数据库连接信息
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #rewriteBatchedStatements=true 是批量插入性能的关键，会重写多条 INSERT 为一条多 VALUES 语句。
+    url: jdbc:mysql://localhost:3306/test_crud?useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+    username: root
+    password: 123456
+
+
+#mybatis配置
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+server:
+  port: 18080
