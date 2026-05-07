@@ -29,7 +29,7 @@ public class JoinQueryController {
     public Result findUserOrderStats(@RequestParam(defaultValue = "20") Integer limit) {
         long begin = System.currentTimeMillis();
         log.info("查询用户订单统计，前{}条", limit);
-        log.info("这一条是为了测试Git用的");
+        log.info("这一条是为了测试Git123456用的");
         List<UserOrderStat> list = joinQueryService.findUserOrderStats(limit);
         long end = System.currentTimeMillis();
         log.info("查询耗时：{} 毫秒", end - begin);
