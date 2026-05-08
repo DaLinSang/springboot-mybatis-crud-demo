@@ -32,6 +32,7 @@ public class JoinQueryController {
         log.info("这一条是为了测试Git123456用的");
         log.info("这一条是为了测试Git123456fix用的");
         log.info("这一条是为了测试Git master 用的");
+        log.info("这一条是为了测试hot-fix2用的");
         List<UserOrderStat> list = joinQueryService.findUserOrderStats(limit);
         long end = System.currentTimeMillis();
         log.info("查询耗时：{} 毫秒", end - begin);
